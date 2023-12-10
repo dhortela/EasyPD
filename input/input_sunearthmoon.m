@@ -1,0 +1,77 @@
+close all
+clear
+
+%% Define structs
+
+figS = struct; % Contains figures
+
+%% Define variables
+
+%%% Physical parameters
+
+G = 6.67408e-11; % Gravitational constant
+a = 1e8; % Softening parameter
+
+%%% Time parameters
+
+maxsimtime = 3.154e7; % Max simulation time
+%dt = 5e4; % Time step size
+dt = 1e4;
+numtimesteps = ceil(maxsimtime/dt);
+curstep = 1; % Current step
+simtime = 0; % Current simulation time
+
+%%% Seed
+
+rng(420); % Random number generator fixed seed
+
+%%% Plotting
+
+plotparticlesfreq = 1; % 0,1: plot every time; Inf: plot never
+plotenergyfreq = 200;
+
+%%% Time integration
+
+timeintegrator = @LeapFrog;
+
+%% Initial conditions
+
+%%% Masses
+
+moonmass = 7.34767e22;
+earthmass = 5.9722e24;
+sunmass = 1.989e30;
+mvec = [moonmass; earthmass; sunmass];
+
+%%% Positions
+
+earthr = 1.496e11;
+moonr = earthr + 3.84e8;
+
+moonpos = [moonr 0 0];
+earthpos = [earthr 0 0];
+sunpos = [0 0 0];
+
+%[xpos, ypos, zpos] = SphericalToCartesianCoordinates(rpos,thetapos,phipos);
+
+%posvec = zeros(N,3);
+posvec = [moonpos; earthpos; sunpos];
+
+%%% Velocities
+
+earthv = 2.97827e4;
+%moonv = 1.022e3;
+moonv = earthv;
+
+moonvel = [0 moonv 0];
+earthvel = [0 earthv 0];
+sunvel = [0 0 0];
+
+velvec = [moonvel; earthvel; sunvel];
+
+%% Initialisation of tracking vectors
+
+timevec = zeros(numtimesteps,1); % simtime at each step
+H = zeros(numtimesteps,1); % Total energy
+KE = zeros(numtimesteps,1); % Kinetic energy
+PE = zeros(numtimesteps,1); % Potential energy
