@@ -49,7 +49,7 @@ ax2.XAxis.Exponent = 0; ax2.YAxis.Exponent = 0;
 
 title('Energy vs time');
 
-xlim([t(1) t(curstep)]);
+% xlim([t(1) t(curstep)]);
 
 %drawnow;
 
