@@ -13,7 +13,7 @@ EasyPD is a vectorised particle dynamics code. The intention is to adopt a simpl
 
 ## Capabilities
 
- - Newtonian Gravity
+ - Newtonian gravity
 
 ## Folder structure
 
@@ -26,5 +26,5 @@ EasyPD is a vectorised particle dynamics code. The intention is to adopt a simpl
 To run a simulation, you must use a specific input file. One way of doing this is via the following
 
  - `cd /path/to/src`
- - `run('/path/to/input/inputfile')`
- - `run('EasyPD')`
+ - `run('/path/to/input/inputfile.m')`
+ - `run('EasyPD.m')`
